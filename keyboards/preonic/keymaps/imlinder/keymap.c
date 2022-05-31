@@ -23,6 +23,7 @@ enum preonic_layers {
   _LOWER,
   _RAISE,
   _NAV,
+  _NUM,
   _ADJUST,
   _FN,
 };
@@ -35,18 +36,18 @@ enum preonic_keycodes {
   RAISE,
 };
 
-#define CTL_LEFT MT(MOD_RCTL, KC_LEFT)
-#define ALT_DOWN MT(MOD_RALT, KC_DOWN)
+#define CTL_DOWN MT(MOD_RCTL, KC_DOWN)
+#define ALT_LEFT MT(MOD_RALT, KC_LEFT)
 #define CTL_ESC LCTL_T(KC_ESC)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_QWERTY] = LAYOUT_preonic_grid(
-  KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,   KC_6,   KC_7,  KC_8,     KC_9,     KC_0,    KC_BSPC,
-  KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,   KC_Y,   KC_U,  KC_I,     KC_O,     KC_P,    KC_BSPC,
-  CTL_ESC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,   KC_H,   KC_J,  KC_K,     KC_L,     KC_SCLN, KC_QUOT,
-  KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,   KC_N,   KC_M,  KC_COMM,  KC_DOT,   KC_SLSH, RSFT_T(KC_ENT),
-  MO(_FN), KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC, KC_SPC, RAISE, CTL_LEFT, ALT_DOWN, KC_UP,   KC_RIGHT
+  KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,   KC_6,    KC_7,  KC_8,     KC_9,     KC_0,    _______,
+  KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,   KC_Y,    KC_U,  KC_I,     KC_O,     KC_P,    KC_BSLS,
+  CTL_ESC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,   KC_H,    KC_J,  KC_K,     KC_L,     KC_SCLN, KC_QUOT,
+  KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,   KC_N,    KC_M,  KC_COMM,  KC_DOT,   KC_SLSH, RSFT_T(KC_ENT),
+  MO(_FN), KC_LCTL, KC_LALT, KC_LGUI, LOWER,   LT(_NUM, KC_SPC), KC_BSPC, RAISE, ALT_LEFT, CTL_DOWN, KC_UP,   KC_RIGHT
 ),
 
 // å, ä and ö
@@ -68,11 +69,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 [_LOWER] = LAYOUT_preonic_grid(
-  KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,   KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_DEL,
-  KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,   KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_UP,   KC_DEL,
+  KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,   KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, _______,
+  KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,   KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_UP,   _______,
   _______, KC_LPRN, KC_LCBR, _______, KC_RIGHT, _______, _______, KC_UNDS, KC_PLUS, KC_RCBR, KC_RPRN, KC_PIPE,
   _______, _______, _______, _______, _______,  KC_LEFT, KC_DOWN, _______, _______, _______, _______,  _______,
-  _______, _______, _______, _______, _______,  KC_ENT,  KC_ENT,  _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY
+  _______, _______, _______, _______, _______,  _______,  KC_DEL,  _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY
 ),
 
 [_RAISE] = LAYOUT_preonic_grid(
@@ -80,7 +81,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_DEL,
   _______, KC_LPRN, KC_LBRC, _______, _______, _______, _______, KC_MINS, KC_EQL,  KC_RBRC, KC_RPRN, KC_BSLS,
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-  _______, _______, _______, _______, _______, KC_BSPC, KC_BSPC, _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY
+  _______, _______, _______, _______, _______, KC_ENT,  _______, _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY
+),
+
+[_NUM] = LAYOUT_preonic_grid(
+  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+  _______, _______, _______, _______, _______, _______, _______, KC_7,    KC_8,    KC_9,    _______, _______,
+  _______, _______, _______, _______, _______, _______, _______, KC_4,    KC_5,    KC_6,    _______, _______,
+  _______, _______, _______, _______, _______, _______, _______, KC_1,    KC_2,    KC_3,    _______,    _______,
+  _______, _______, _______, _______, _______, _______, _______, KC_0,    _______, _______, _______, _______
 ),
 
 [_NAV] = LAYOUT_preonic_grid(
