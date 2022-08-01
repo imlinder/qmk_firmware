@@ -47,9 +47,24 @@
 /* override number of MIDI tone keycodes (each octave adds 12 keycodes and allocates 12 bytes) */
 //#define MIDI_TONE_KEYCODE_OCTAVES 2
 
+//#define TAPPING_FORCE_HOLD
+#define TAPPING_TERM 150
+#define PERMISSIVE_HOLD
 
+// Mouse settings
 #define MOUSEKEY_INTERVAL 16
 #define MOUSEKEY_DELAY 0
 #define MOUSEKEY_TIME_TO_MAX 60
 #define MOUSEKEY_MAX_SPEED 7
 #define MOUSEKEY_WHEEL_DELAY 0
+
+#ifdef RGBLIGHT_ENABLE
+    #undef  RGBLIGHT_ANIMATIONS
+    #define RGBLIGHT_EFFECT_RAINBOW_SWIRL
+    #define RGBLIGHT_EFFECT_STATIC_GRADIENT
+    #define RGBLIGHT_LIMIT_VAL 255
+    #define RGBLIGHT_HUE_STEP 5
+    #define RGBLIGHT_SAT_STEP 17
+    #define RGBLIGHT_VAL_STEP 17
+    #define RGBLIGHT_SLEEP
+#endif

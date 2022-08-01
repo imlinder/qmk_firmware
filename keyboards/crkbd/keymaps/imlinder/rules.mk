@@ -1,4 +1,6 @@
 MOUSEKEY_ENABLE = yes    # Mouse keys
+EXTRAKEY_ENABLE = yes
+SPLIT_KEYBOARD = yes
 # RGBLIGHT_ENABLE = yes    # Enable WS2812 RGB underlight.
 RGBLIGHT_ENABLE = no
 RGB_MATRIX_ENABLE = yes
