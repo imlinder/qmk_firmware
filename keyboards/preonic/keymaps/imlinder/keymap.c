@@ -14,7 +14,7 @@
  */
 
 #include QMK_KEYBOARD_H
-#include "muse.h"
+// #include "muse.h"
 
 enum preonic_layers {
   _QWERTY,
@@ -104,20 +104,29 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_ADJUST] = LAYOUT_preonic_grid(
   KC_F12,   KC_F1,   KC_F2,   KC_F3,   KC_F4,  KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
   KC_F12,   KC_F1,   KC_F2,   KC_F3,   KC_F4,  KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
-  RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, _______, _______, _______, QWERTY,  SWE,     GAME,    _______,  RESET,
+  RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, _______, _______, _______, QWERTY,  SWE,     GAME,    _______, QK_BOOT,
   RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, _______, _______, _______, _______, _______, _______, _______, KC_RSFT,
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 ),
 
 [_FN] = LAYOUT_preonic_grid(
-  _______, _______,        _______,          _______, _______,          _______, _______, _______,  _______, _______, _______, _______,
-  _______, RGB_HUI,        RGB_SAI,          RGB_VAI, RGB_MODE_FORWARD, _______, _______, LAG_NRM,  LAG_SWP, _______, _______, _______,
-  RGB_TOG, RGB_HUD,        RGB_SAD,          RGB_VAD, RGB_MODE_REVERSE, _______, _______, _______,  _______, _______, DEBUG,   RESET,
-  _______, RGB_MODE_PLAIN, _______, _______, _______,                   _______, _______, _______,  _______, _______, _______, _______,
-  _______, _______,        _______,          _______, _______,          _______, _______, _______,  _______, _______, _______, _______
+  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 )
 
 };
+
+bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case CTL_ESC:
+            return true;
+        default:
+            return false;
+    }
+}
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
